@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ministry Multiplication Alignment Assessment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #1D9E75;
+    --teal-light: #E1F5EE;
+    --teal-dark: #0F6E56;
+    --teal-deep: #085041;
+    --purple: #534AB7;
+    --purple-light: #EEEDFE;
+    --purple-dark: #3C3489;
+    --coral: #D85A30;
+    --coral-light: #FAECE7;
+    --coral-dark: #993C1D;
+    --amber: #BA7517;
+    --amber-light: #FAEEDA;
+    --red: #E24B4A;
+    --red-light: #FCEBEB;
+    --red-dark: #791F1F;
+    --green: #639922;
+    --green-light: #EAF3DE;
+    --green-dark: #27500A;
+    --text: #1a1a18;
+    --text-secondary: #5a5a56;
+    --text-muted: #8a8a86;
+    --border: rgba(0,0,0,0.1);
+    --border-strong: rgba(0,0,0,0.18);
+    --bg: #faf9f6;
+    --surface: #ffffff;
+    --surface-2: #f4f2ee;
+    --radius: 10px;
+    --radius-lg: 14px;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    line-height: 1.6;
+  }
+
+  .wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .brand-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2.5rem;
+  }
+
+  .brand-mark {
+    width: 36px;
+    height: 36px;
+    background: var(--teal);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brand-mark svg { width: 20px; height: 20px; fill: white; }
+
+  .brand-name {
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .brand-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 1px;
+  }
+
+  h1 {
+    font-family: 'Lora', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+  }
+
+  .lead {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .dim-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 520px) {
+    .dim-cards { grid-template-columns: 1fr; }
+    h1 { font-size: 22px; }
+  }
+
+  .dim-card {
+    padding: 14px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+
+  .dim-card-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .dim-card-icon svg { width: 16px; height: 16px; }
+
+  .dim-card-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .dim-card-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .field-group { margin-bottom: 1.5rem; }
+
+  .field-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  textarea, input[type="text"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--surface);
+    resize: vertical;
+    transition: border-color 0.15s;
+  }
+
+  textarea:focus, input:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(29,158,117,0.1);
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--teal);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-primary:hover { background: var(--teal-dark); }
+  .btn-primary:active { transform: scale(0.99); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .btn-secondary:hover { background: var(--surface-2); }
+
+  /* Progress */
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .progress-meta { font-size: 13px; color: var(--text-muted); }
+  .progress-ministry { font-size: 14px; font-weight: 500; color: var(--text); }
+
+  .progress-track {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-bottom: 2rem;
+  }
+
+  .progress-fill {
+    height: 3px;
+    background: var(--teal);
+    border-radius: 2px;
+    transition: width 0.35s ease;
+  }
+
+  /* Dimension section */
+  .dim-section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dim-section-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .dim-section-icon svg { width: 18px; height: 18px; }
+
+  .dim-section-name {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .dim-section-desc { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+  /* Question cards */
+  .question-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 10px;
+  }
+
+  .question-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  .scale-row {
+    display: flex;
+    gap: 6px;
+  }
+
+  .scale-btn {
+    flex: 1;
+    padding: 8px 4px;
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    background: var(--surface);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.12s, border-color 0.12s, color 0.12s;
+  }
+
+  .scale-btn:hover {
+    background: var(--surface-2);
+    border-color: var(--border-strong);
+  }
+
+  .scale-btn.sel-1, .scale-btn.sel-2 {
+    background: var(--red-light);
+    border-color: var(--red);
+    color: var(--red-dark);
+    font-weight: 500;
+  }
+
+  .scale-btn.sel-3 {
+    background: var(--amber-light);
+    border-color: var(--amber);
+    color: #4A2E0A;
+    font-weight: 500;
+  }
+
+  .scale-btn.sel-4, .scale-btn.sel-5 {
+    background: var(--green-light);
+    border-color: var(--green);
+    color: var(--green-dark);
+    font-weight: 500;
+  }
+
+  .scale-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+  }
+
+  .scale-label { font-size: 11px; color: var(--text-muted); }
+
+  /* Nav */
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Results */
+  .results-header {
+    text-align: center;
+    padding: 2rem 0 1.5rem;
+  }
+
+  .overall-score {
+    font-family: 'Lora', serif;
+    font-size: 64px;
+    font-weight: 600;
+    color: var(--teal);
+    line-height: 1;
+  }
+
+  .overall-denom {
+    font-size: 28px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .overall-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+  }
+
+  .banner {
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .banner-info { background: #EBF4FD; color: #0C3A6B; border-left: 3px solid #185FA5; }
+  .banner-success { background: var(--green-light); color: var(--green-dark); border-left: 3px solid var(--green); }
+  .banner-warning { background: var(--amber-light); color: #3D2200; border-left: 3px solid var(--amber); }
+
+  .section-heading {
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1rem;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dim-result-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 10px;
+  }
+
+  .dim-result-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .dim-result-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .dim-result-score {
+    font-family: 'Lora', serif;
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  .dim-bar-track {
+    height: 5px;
+    background: var(--border);
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+
+  .dim-bar-fill {
+    height: 5px;
+    border-radius: 3px;
+    transition: width 0.5s ease;
+  }
+
+  .dim-insight { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+  .ministry-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ministry-row:last-child { border-bottom: none; }
+
+  .ministry-row-name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .ministry-row-pills {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .pill {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  .pill-high { background: var(--green-light); color: var(--green-dark); }
+  .pill-mid { background: var(--amber-light); color: #4A2E0A; }
+  .pill-low { background: var(--red-light); color: var(--red-dark); }
+
+  .cta-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  .cta-title {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .cta-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    background: var(--teal);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+
+  .btn-cta:hover { background: var(--teal-dark); }
+
+  .restart-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .restart-btn:hover { background: var(--surface-2); }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 1.75rem 0; }
+
+  .screen { display: none; }
+  .screen.active { display: block; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="brand-bar">
+    <div class="brand-mark">
+      <svg viewBox="0 0 20 20"><path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm.75 11.5h-1.5v-5h1.5v5zm0-6.5h-1.5V5.5h1.5V7z"/></svg>
+    </div>
+    <div>
+      <div class="brand-name">Multipliers Journey</div>
+      <div class="brand-sub">Ministry Alignment Assessment</div>
+    </div>
+  </div>
+
+  <!-- INTRO SCREEN -->
+  <div id="screen-intro" class="screen active">
+    <h1>Is your church built for multiplication?</h1>
+    <p class="lead">This assessment helps you honestly evaluate each of your ministries through Exponential's three core multiplication dimensions — Discipleship, Mobilization, and Capacity Building. It takes about 10 minutes.</p>
+
+    <div class="dim-cards">
+      <div class="dim-card">
+        <div class="dim-card-icon" style="background:var(--teal-light)">
+          <svg viewBox="0 0 20 20" fill="var(--teal)"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v1h8v-1zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-1a5.97 5.97 0 00-.75-2.906A3.005 3.005 0 0119 15v1h-3zM4.75 14.094A5.97 5.97 0 004 17v1H1v-1a3 3 0 013.75-2.906z"/></svg>
+        </div>
+        <div class="dim-card-name">Discipleship</div>
+        <div class="dim-card-desc">Forming reproducing disciples, not just attenders</div>
+      </div>
+      <div class="dim-card">
+        <div class="dim-card-icon" style="background:var(--purple-light)">
+          <svg viewBox="0 0 20 20" fill="var(--purple)"><path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/></svg>
+        </div>
+        <div class="dim-card-name">Mobilization</div>
+        <div class="dim-card-desc">Releasing people into calling, not filling roles</div>
+      </div>
+      <div class="dim-card">
+        <div class="dim-card-icon" style="background:var(--coral-light)">
+          <svg viewBox="0 0 20 20" fill="var(--coral)"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd"/></svg>
+        </div>
+        <div class="dim-card-name">Capacity building</div>
+        <div class="dim-card-desc">Structures that hold multiplication, not just growth</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="ministry-list">Which ministries do you want to assess? (one per line)</label>
+      <textarea id="ministry-list" rows="6" placeholder="Children's Ministry&#10;Small Groups&#10;Worship Team&#10;Young Adults&#10;Outreach / Missions"></textarea>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="church-name">Church name <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
+      <input type="text" id="church-name" placeholder="Grace Community Church">
+    </div>
+
+    <button class="btn-primary" onclick="startAssessment()">
+      <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd"/></svg>
+      Begin assessment
+    </button>
+  </div>
+
+  <!-- ASSESSMENT SCREEN -->
+  <div id="screen-assessment" class="screen">
+    <div class="progress-header">
+      <span class="progress-meta" id="progress-label"></span>
+      <span class="progress-ministry" id="ministry-label"></span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <div id="dim-section"></div>
+    <div class="nav-row">
+      <button class="btn-secondary" id="btn-back" onclick="prevStep()">← Back</button>
+      <button class="btn-primary" id="btn-next" onclick="nextStep()" style="width:auto;padding:10px 24px;">Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <div id="screen-results" class="screen">
+    <div class="results-header">
+      <div id="church-label" style="font-size:13px;color:var(--text-muted);margin-bottom:8px;"></div>
+      <div class="overall-score" id="overall-number">—</div>
+      <div class="overall-label">overall multiplication alignment</div>
+    </div>
+
+    <div id="results-banner"></div>
+
+    <div class="section-heading">Dimension breakdown</div>
+    <div id="dimension-results"></div>
+
+    <div class="divider"></div>
+
+    <div class="section-heading">Ministry-by-ministry view</div>
+    <div id="ministry-results" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:0.5rem 1.25rem;"></div>
+
+    <div class="cta-section">
+      <div class="cta-title">Ready to move your score?</div>
+      <div class="cta-desc">Multipliers Journey is a 6-month coaching cohort for church leaders who want clarity on multiplication — for their whole team — without adding another program.</div>
+      <a class="btn-cta" href="https://calendar.app.google/V7UX8kAgCyTMPBRJ9" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+        Schedule a conversation
+      </a>
+    </div>
+
+    <button class="restart-btn" onclick="restartAssessment()">↺ Start over with new ministries</button>
+  </div>
+
+</div>
+
+<script>
+const DIMENSIONS = [
+  {
+    id: 'discipleship', label: 'Discipleship', color: '#1D9E75', bg: '#E1F5EE',
+    desc: 'Forming reproducing disciples',
+    iconPath: 'M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v1h8v-1zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-1a5.97 5.97 0 00-.75-2.906A3.005 3.005 0 0119 15v1h-3zM4.75 14.094A5.97 5.97 0 004 17v1H1v-1a3 3 0 013.75-2.906z',
+    questions: [
+      'This ministry has a clear pathway for moving people from attendance toward active, reproducing discipleship.',
+      'Participants are regularly challenged with the call to make disciples — not just grow personally.',
+      'We can point to specific people who have been sent out of this ministry into new ministry contexts.',
+      'The leadership culture of this ministry models multiplication, not just maintenance.',
+    ],
+    insights: {
+      high: 'Your ministries are actively forming reproducing disciples. Keep pushing the "sent" culture.',
+      mid: 'Discipleship pathways exist but rarely result in multiplication. Consider what\'s producing consumers vs. missionaries.',
+      low: 'Ministries are primarily serving attenders. A fundamental shift toward reproductive discipleship is needed.'
+    }
+  },
+  {
+    id: 'mobilization', label: 'Mobilization', color: '#534AB7', bg: '#EEEDFE',
+    desc: 'Releasing people into their calling',
+    iconPath: 'M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z',
+    questions: [
+      'This ministry actively identifies and develops potential leaders rather than filling slots.',
+      'People in this ministry are regularly invited into responsibility that stretches them beyond their comfort zone.',
+      'We celebrate when someone leaves this ministry to lead or plant something new — it\'s seen as a win, not a loss.',
+      'The ministry creates on-ramps where people can discover, test, and grow in their calling.',
+    ],
+    insights: {
+      high: 'You\'re releasing people well. Watch for the temptation to hold on to your best leaders.',
+      mid: 'Some mobilization is happening, but it may be role-filling rather than calling-discovery. Dig into the difference.',
+      low: 'People aren\'t being released into their calling. Ministry may be consuming rather than deploying people.'
+    }
+  },
+  {
+    id: 'capacity', label: 'Capacity building', color: '#D85A30', bg: '#FAECE7',
+    desc: 'Structures that hold multiplication',
+    iconPath: 'M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z',
+    questions: [
+      'This ministry\'s structure and systems could be replicated or multiplied without depending on one key person.',
+      'We have intentionally simplified or pruned programs to free up capacity for multiplication.',
+      'This ministry contributes to — rather than competes with — the church\'s broader multiplication goals.',
+      'We regularly evaluate this ministry through a multiplication lens, not just attendance or participation numbers.',
+    ],
+    insights: {
+      high: 'Structures are in place to hold growth. Now ask: are they actively multiplying or just sustaining?',
+      mid: 'Some multiplication-ready systems exist, but key-person dependency may be limiting scalability.',
+      low: 'Current structures would struggle to sustain multiplication. Simplification and shared leadership are urgent priorities.'
+    }
+  }
+];
+
+let ministries = [], scores = {}, currentMinistry = 0, currentDim = 0;
+
+function startAssessment() {
+  const raw = document.getElementById('ministry-list').value.trim();
+  ministries = raw.split('\n').map(s => s.trim()).filter(Boolean);
+  if (!ministries.length) { alert('Please enter at least one ministry.'); return; }
+  ministries.forEach(m => { scores[m] = {}; DIMENSIONS.forEach(d => { scores[m][d.id] = {}; }); });
+  currentMinistry = 0; currentDim = 0;
+  show('screen-assessment');
+  renderDim();
+}
+
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function totalSteps() { return ministries.length * DIMENSIONS.length; }
+function currentStep() { return currentMinistry * DIMENSIONS.length + currentDim; }
+
+function renderDim() {
+  const m = ministries[currentMinistry];
+  const dim = DIMENSIONS[currentDim];
+  const step = currentStep();
+  document.getElementById('progress-label').textContent = `Ministry ${currentMinistry + 1} of ${ministries.length}`;
+  document.getElementById('ministry-label').textContent = m;
+  document.getElementById('progress-fill').style.width = Math.round((step / totalSteps()) * 100) + '%';
+
+  let html = `<div class="dim-section-header">
+    <div class="dim-section-icon" style="background:${dim.bg}">
+      <svg viewBox="0 0 20 20" fill="${dim.color}"><path fill-rule="evenodd" d="${dim.iconPath}" clip-rule="evenodd"/></svg>
+    </div>
+    <div>
+      <div class="dim-section-name">${dim.label}</div>
+      <div class="dim-section-desc">${dim.desc}</div>
+    </div>
+  </div>`;
+
+  dim.questions.forEach((q, qi) => {
+    const qId = `q${qi}`;
+    const saved = scores[m][dim.id][qId] || null;
+    html += `<div class="question-card">
+      <div class="question-text">${q}</div>
+      <div class="scale-row">`;
+    for (let v = 1; v <= 5; v++) {
+      const sel = saved === v ? `sel-${v}` : '';
+      html += `<button type="button" class="scale-btn ${sel}" onclick="record('${m}','${dim.id}','${qId}',${v},this)">${v}</button>`;
+    }
+    html += `</div><div class="scale-labels"><span class="scale-label">Not at all</span><span class="scale-label">Consistently</span></div></div>`;
+  });
+
+  document.getElementById('dim-section').innerHTML = html;
+  document.getElementById('btn-back').style.visibility = step === 0 ? 'hidden' : 'visible';
+  document.getElementById('btn-next').textContent = step === totalSteps() - 1 ? 'See results →' : 'Next →';
+}
+
+function record(m, dimId, qId, val, btn) {
+  scores[m][dimId][qId] = val;
+  btn.closest('.scale-row').querySelectorAll('.scale-btn').forEach(b => b.className = 'scale-btn');
+  btn.className = `scale-btn sel-${val}`;
+}
+
+function allAnswered() {
+  const m = ministries[currentMinistry];
+  const dim = DIMENSIONS[currentDim];
+  return dim.questions.every((_, qi) => scores[m][dim.id][`q${qi}`]);
+}
+
+function nextStep() {
+  if (!allAnswered()) { alert('Please rate all questions before continuing.'); return; }
+  if (currentDim < DIMENSIONS.length - 1) { currentDim++; renderDim(); return; }
+  if (currentMinistry < ministries.length - 1) { currentMinistry++; currentDim = 0; renderDim(); return; }
+  showResults();
+}
+
+function prevStep() {
+  if (currentDim > 0) { currentDim--; }
+  else if (currentMinistry > 0) { currentMinistry--; currentDim = DIMENSIONS.length - 1; }
+  renderDim();
+}
+
+function avg(m, dimId) {
+  const dim = DIMENSIONS.find(d => d.id === dimId);
+  const vals = dim.questions.map((_, qi) => scores[m][dimId][`q${qi}`] || 0);
+  return vals.reduce((a,b) => a+b,0) / vals.length;
+}
+
+function dimAvgAll(dimId) {
+  return ministries.reduce((s,m) => s + avg(m, dimId), 0) / ministries.length;
+}
+
+function pillClass(s) {
+  if (s >= 4) return 'pill-high';
+  if (s >= 2.5) return 'pill-mid';
+  return 'pill-low';
+}
+
+function scoreLabel(s) {
+  if (s >= 4) return 'Aligned';
+  if (s >= 2.5) return 'Growing';
+  return 'Needs attention';
+}
+
+function showResults() {
+  const overall = DIMENSIONS.reduce((s,d) => s + dimAvgAll(d.id), 0) / DIMENSIONS.length;
+  show('screen-results');
+
+  const church = document.getElementById('church-name').value.trim();
+  document.getElementById('church-label').textContent = church || '';
+  document.getElementById('overall-number').innerHTML = `${overall.toFixed(1)}<span class="overall-denom">/5</span>`;
+
+  let bannerClass = 'banner-info', bannerText = '';
+  if (overall >= 4) {
+    bannerClass = 'banner-success';
+    bannerText = 'Your ministries show strong overall alignment with multiplication. The challenge now is sustaining it and pushing into developing areas.';
+  } else if (overall >= 2.5) {
+    bannerText = 'Real strengths exist alongside real gaps. This is exactly the kind of honest baseline Multipliers Journey is built to work with.';
+  } else {
+    bannerClass = 'banner-warning';
+    bannerText = 'Your assessment reveals significant gaps between current ministry activity and multiplication alignment. That honesty is the first and most important step.';
+  }
+  document.getElementById('results-banner').innerHTML = `<div class="banner ${bannerClass}">${bannerText}</div>`;
+
+  let dimHtml = '';
+  DIMENSIONS.forEach(dim => {
+    const a = dimAvgAll(dim.id);
+    const pct = Math.round((a/5)*100);
+    const insightKey = a >= 4 ? 'high' : a >= 2.5 ? 'mid' : 'low';
+    dimHtml += `<div class="dim-result-card">
+      <div class="dim-result-top">
+        <div>
+          <div class="dim-result-name">${dim.label}</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">${scoreLabel(a)}</div>
+        </div>
+        <div class="dim-result-score" style="color:${dim.color}">${a.toFixed(1)}</div>
+      </div>
+      <div class="dim-bar-track"><div class="dim-bar-fill" style="width:${pct}%;background:${dim.color}"></div></div>
+      <div class="dim-insight">${dim.insights[insightKey]}</div>
+    </div>`;
+  });
+  document.getElementById('dimension-results').innerHTML = dimHtml;
+
+  const sorted = [...ministries].sort((a,b) => {
+    const aA = DIMENSIONS.reduce((s,d) => s+avg(a,d.id),0)/DIMENSIONS.length;
+    const bA = DIMENSIONS.reduce((s,d) => s+avg(b,d.id),0)/DIMENSIONS.length;
+    return bA - aA;
+  });
+
+  let mHtml = '';
+  sorted.forEach(m => {
+    const mAvg = DIMENSIONS.reduce((s,d) => s+avg(m,d.id),0)/DIMENSIONS.length;
+    mHtml += `<div class="ministry-row">
+      <div class="ministry-row-name">${m} <span style="font-size:12px;color:var(--text-muted);font-weight:400">${mAvg.toFixed(1)}/5</span></div>
+      <div class="ministry-row-pills">`;
+    DIMENSIONS.forEach(dim => {
+      const s = avg(m, dim.id);
+      mHtml += `<span class="pill ${pillClass(s)}">${dim.label.split(' ')[0]}: ${s.toFixed(1)}</span>`;
+    });
+    mHtml += `</div></div>`;
+  });
+  document.getElementById('ministry-results').innerHTML = mHtml;
+}
+
+function restartAssessment() {
+  ministries = []; scores = {};
+  document.getElementById('ministry-list').value = '';
+  document.getElementById('church-name').value = '';
+  show('screen-intro');
+}
+</script>
+</body>
+</html>
